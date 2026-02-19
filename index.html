@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karen Lopes — Especialista em Depilação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #1a1410;
+  --cream: #faf6f2;
+  --nude: #e8d5c4;
+  --terracotta: #c4785a;
+  --blush: #e9b8a3;
+  --warm-white: #fdf9f6;
+  --muted: #8a7060;
+  --accent: #b5614a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 2px; }
+
+/* HERO */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(196,120,90,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(233,184,163,0.15) 0%, transparent 50%),
+    var(--warm-white);
+}
+
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196,120,90,0.1);
+}
+.hero-bg-circle:nth-child(1) { width: 500px; height: 500px; top: -120px; right: -120px; }
+.hero-bg-circle:nth-child(2) { width: 280px; height: 280px; bottom: 80px; left: -80px; border-color: rgba(233,184,163,0.18); }
+
+.topbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+}
+
+.topbar-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.topbar-social {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  text-decoration: none;
+  border-bottom: 1px solid var(--terracotta);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.topbar-social:hover { opacity: 0.7; }
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 0;
+  text-align: center;
+}
+
+.profile-frame {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  margin-bottom: 28px;
+}
+
+.profile-frame::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--terracotta), var(--blush), var(--nude), var(--terracotta));
+  animation: spin 8s linear infinite;
+}
+
+.profile-frame::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--warm-white);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.profile-img-placeholder {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--nude) 0%, var(--blush) 60%, var(--terracotta) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-style: italic;
+  color: white;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 9vw, 58px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.hero-name em { font-style: italic; color: var(--terracotta); }
+
+.hero-role {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.hero-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(15px, 3.5vw, 18px);
+  color: var(--muted);
+  max-width: 300px;
+  line-height: 1.55;
+  margin-bottom: 32px;
+}
+
+.proof-strip {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 36px;
+  align-items: center;
+}
+
+.proof-item { text-align: center; }
+
+.proof-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--terracotta);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.proof-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.proof-divider { width: 1px; height: 36px; background: var(--nude); flex-shrink: 0; }
+
+.cta-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 340px;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  text-align: center;
+  padding: 18px 32px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+.cta-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--terracotta);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.cta-primary:hover::before { transform: translateX(0); }
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(196,120,90,0.25); }
+.cta-primary span { position: relative; z-index: 1; }
+
+.pulse-dot {
+  position: relative;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  animation: pulse-anim 2s ease-in-out infinite;
+}
+
+@keyframes pulse-anim {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+}
+
+.cta-availability {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+
+/* MARQUEE */
+.marquee-wrap {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid var(--nude);
+  overflow: hidden;
+  padding: 14px 0;
+  background: rgba(250,246,242,0.85);
+  backdrop-filter: blur(10px);
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+
+.marquee-item span { color: var(--terracotta); margin: 0 6px; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SECTIONS */
+section {
+  padding: 60px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--nude);
+}
+
+/* SERVICES */
+.services-grid { display: grid; gap: 10px; }
+
+.service-card {
+  background: white;
+  border: 1px solid var(--nude);
+  border-radius: 3px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.28s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--terracotta);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.28s ease;
+}
+
+.service-card:hover { border-color: rgba(196,120,90,0.4); transform: translateX(4px); background: #fffaf8; }
+.service-card:hover::before { transform: scaleY(1); }
+
+.service-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 2px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-icon svg { width: 20px; height: 20px; stroke: var(--terracotta); fill: none; stroke-width: 1.5; }
+
+.service-info { flex: 1; }
+
+.service-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+  letter-spacing: -0.2px;
+}
+
+.service-desc { font-size: 12px; color: var(--muted); line-height: 1.35; }
+
+.service-arrow {
+  font-size: 16px;
+  color: var(--nude);
+  transition: all 0.28s;
+}
+
+.service-card:hover .service-arrow { color: var(--terracotta); transform: translateX(3px); }
+
+/* ABOUT */
+.about-strip {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 60px 24px;
+}
+
+.about-inner { max-width: 480px; margin: 0 auto; }
+.about-strip .section-label { color: var(--blush); }
+.about-strip .section-label::after { background: rgba(255,255,255,0.1); }
+
+.about-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 7vw, 42px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+.about-headline em { font-style: italic; color: var(--blush); }
+
+.about-body {
+  font-size: 14px;
+  line-height: 1.72;
+  color: rgba(250,246,242,0.65);
+  margin-bottom: 30px;
+}
+
+.about-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.badge {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 7px 13px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+
+/* INFO GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.info-card {
+  background: white;
+  border: 1px solid var(--nude);
+  border-radius: 3px;
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.info-card:hover { border-color: var(--terracotta); }
+
+.info-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--cream);
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-card-icon svg { width: 17px; height: 17px; stroke: var(--terracotta); fill: none; stroke-width: 1.5; }
+
+.info-card-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.info-card-value {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.info-card-value a { color: var(--terracotta); text-decoration: none; }
+
+/* TESTIMONIALS */
+.testimonial-stack { display: grid; gap: 14px; }
+
+.testimonial {
+  background: white;
+  border: 1px solid var(--nude);
+  border-radius: 3px;
+  padding: 22px;
+  position: relative;
+}
+
+.testimonial::after {
+  content: '\201C';
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  line-height: 1;
+  color: var(--nude);
+  pointer-events: none;
+}
+
+.testimonial-stars { display: flex; gap: 2px; margin-bottom: 12px; }
+
+.star {
+  width: 11px;
+  height: 11px;
+  background: var(--terracotta);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.testimonial-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ACTIONS */
+.actions-grid { display: grid; gap: 9px; }
+
+.action-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.26s;
+}
+
+.action-link.wa { background: #f0faf4; border: 1px solid #c6e8d4; color: #1a5c30; }
+.action-link.wa:hover { background: #d4f0e0; transform: translateY(-2px); }
+
+.action-link.ig { background: linear-gradient(135deg, #fdf6f0, #fdeee8); border: 1px solid var(--nude); color: var(--ink); }
+.action-link.ig:hover { background: linear-gradient(135deg, #fceee4, #fad8c8); transform: translateY(-2px); }
+
+.action-link.maps { background: #f0f4ff; border: 1px solid #c6d0f0; color: #1a2e6e; }
+.action-link.maps:hover { background: #dce4ff; transform: translateY(-2px); }
+
+.action-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 1.8; }
+.wa .action-icon { background: rgba(74,222,128,0.12); }
+.ig .action-icon { background: rgba(196,120,90,0.1); }
+.maps .action-icon { background: rgba(99,102,241,0.1); }
+
+.action-text { flex: 1; }
+.action-title { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+.action-sub { font-size: 11px; opacity: 0.55; }
+
+.action-arrow { font-size: 16px; opacity: 0.3; transition: all 0.26s; }
+.action-link:hover .action-arrow { opacity: 1; transform: translateX(4px); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--nude);
+  padding: 32px 24px 80px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.footer-logo em { font-style: italic; color: var(--terracotta); }
+
+.footer-tag {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* STICKY BAR */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: rgba(26,20,16,0.96);
+  backdrop-filter: blur(20px);
+  display: flex;
+  gap: 10px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.sticky-bar.visible { transform: translateY(0); }
+
+.sticky-cta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.sticky-cta:hover { opacity: 0.85; }
+.sticky-cta.primary { background: var(--terracotta); color: white; }
+.sticky-cta.secondary { background: rgba(255,255,255,0.07); color: var(--cream); border: 1px solid rgba(255,255,255,0.13); }
+
+/* URGENCY */
+.urgency-banner {
+  background: linear-gradient(90deg, var(--terracotta) 0%, #c4604a 100%);
+  color: white;
+  text-align: center;
+  padding: 11px 24px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.urgency-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); margin: 0 10px; vertical-align: middle; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--nude); max-width: 480px; margin: 0 auto; }
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- URGENCY -->
+<div class="urgency-banner">
+  Agenda aberta esta semana<span class="urgency-dot"></span>Vagas limitadas — Reserve agora
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+  </div>
+
+  <div class="topbar">
+    <span class="topbar-tag">São Paulo — BR</span>
+    <a href="https://instagram.com/lopskaren" target="_blank" class="topbar-social">@lopskaren</a>
+  </div>
+
+  <div class="hero-content" id="heroContent">
+    <div class="profile-frame">
+      <img src="assets/img/avatar.png" alt="Karen Lopes" style="position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;">
+    </div>
+
+    <h1 class="hero-name">Karen<br><em>Lopes</em></h1>
+    <p class="hero-role">Especialista em (D)epilação Íntima</p>
+    <p class="hero-tagline">Sua autoestima elevada. Sua pele, bem cuidada.</p>
+
+    <div class="proof-strip">
+      <div class="proof-item">
+        <div class="proof-num">2K+</div>
+        <div class="proof-label">Atendimentos</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <div class="proof-num">2.7K</div>
+        <div class="proof-label">Seguidores</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <div class="proof-num">100%</div>
+        <div class="proof-label">Discrição</div>
+      </div>
+    </div>
+
+    <a href="https://bio.site/karelops" target="_blank" class="cta-primary">
+      <span>Agendar meu horário</span>
+      <div class="pulse-dot"></div>
+    </a>
+
+    <p class="cta-availability">Horários disponíveis hoje e amanhã</p>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item">Depilação Íntima Feminina <span>·</span></div>
+      <div class="marquee-item">Depilação Íntima Masculina <span>·</span></div>
+      <div class="marquee-item">Banho de Lua <span>·</span></div>
+      <div class="marquee-item">Cuidados Pós-Epilação <span>·</span></div>
+      <div class="marquee-item">Ambiente Discreto <span>·</span></div>
+      <div class="marquee-item">+2 mil Atendimentos <span>·</span></div>
+      <div class="marquee-item">Depilação Íntima Feminina <span>·</span></div>
+      <div class="marquee-item">Depilação Íntima Masculina <span>·</span></div>
+      <div class="marquee-item">Banho de Lua <span>·</span></div>
+      <div class="marquee-item">Cuidados Pós-Epilação <span>·</span></div>
+      <div class="marquee-item">Ambiente Discreto <span>·</span></div>
+      <div class="marquee-item">+2 mil Atendimentos <span>·</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="section-label">Serviços</div>
+  <div class="services-grid">
+
+    <a href="https://bio.site/karelops" target="_blank" class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22C12 22 4 16.5 4 10a8 8 0 0 1 16 0c0 6.5-8 12-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="service-info">
+        <div class="service-name">Depilação Íntima Feminina</div>
+        <div class="service-desc">Técnica segura, rápida e altamente higiênica</div>
+      </div>
+      <div class="service-arrow">→</div>
+    </a>
+
+    <a href="https://bio.site/karelops" target="_blank" class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="service-info">
+        <div class="service-name">Depilação Íntima Masculina</div>
+        <div class="service-desc">Atendimento especializado sem constrangimentos</div>
+      </div>
+      <div class="service-arrow">→</div>
+    </a>
+
+    <a href="https://bio.site/karelops" target="_blank" class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+      </div>
+      <div class="service-info">
+        <div class="service-name">Banho de Lua</div>
+        <div class="service-desc">Ritual de hidratação e bem-estar pós-depilação</div>
+      </div>
+      <div class="service-arrow">→</div>
+    </a>
+
+    <a href="https://bio.site/karelops" target="_blank" class="service-card reveal reveal-delay-3">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="service-info">
+        <div class="service-name">Cuidados Pós-Epilação</div>
+        <div class="service-desc">Produtos e orientações para prolongar resultados</div>
+      </div>
+      <div class="service-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="about-strip">
+  <div class="about-inner">
+    <div class="section-label">Sobre Karen</div>
+    <h2 class="about-headline reveal">Mais de <em>2 mil</em><br>histórias de<br>autoestima</h2>
+    <p class="about-body reveal reveal-delay-1">
+      Sou Karen Lopes, especialista em depilação íntima masculina e feminina. Meu trabalho vai além da técnica — é sobre você se sentir bem na sua própria pele. Cada atendimento é pensado com segurança, discrição e cuidado em cada detalhe.
+    </p>
+    <div class="about-badges reveal reveal-delay-2">
+      <div class="badge">Ambiente Discreto</div>
+      <div class="badge">Alta Higiene</div>
+      <div class="badge">Masc. e Fem.</div>
+      <div class="badge">+2 mil Clientes</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<section>
+  <div class="section-label">Informações Rápidas</div>
+  <div class="info-grid">
+
+    <div class="info-card reveal">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="info-card-label">Horários</div>
+      <div class="info-card-value">Seg – Sáb<br>08h às 20h</div>
+    </div>
+
+    <div class="info-card reveal reveal-delay-1">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="info-card-label">Localização</div>
+      <div class="info-card-value"><a href="https://maps.google.com" target="_blank">Ver no Maps</a></div>
+    </div>
+
+    <div class="info-card reveal reveal-delay-2">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="info-card-label">Contato</div>
+      <div class="info-card-value"><a href="https://wa.me/5511973972210" target="_blank">WhatsApp</a></div>
+    </div>
+
+    <div class="info-card reveal reveal-delay-3">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div class="info-card-label">Pagamento</div>
+      <div class="info-card-value">PIX · Cartão<br>Dinheiro</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-label">O que dizem</div>
+  <div class="testimonial-stack">
+
+    <div class="testimonial reveal">
+      <div class="testimonial-stars">
+        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      </div>
+      <p class="testimonial-text">Me senti super acolhida desde o primeiro momento. A Karen é incrível, o ambiente é lindo e super higiênico. Virei cliente fiel!</p>
+      <div class="testimonial-author">Ana Paula — Cliente</div>
+    </div>
+
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="testimonial-stars">
+        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      </div>
+      <p class="testimonial-text">Fui super bem atendido, sem nenhum constrangimento. Profissional que sabe o que faz e deixa a gente à vontade. Recomendo demais.</p>
+      <div class="testimonial-author">Ricardo M. — Cliente</div>
+    </div>
+
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="testimonial-stars">
+        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      </div>
+      <p class="testimonial-text">Resultado perfeito, pele lisinha por muito mais tempo. Superou minhas expectativas. Já fiz o agendamento do próximo!</p>
+      <div class="testimonial-author">Juliana S. — Cliente</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT ACTIONS -->
+<section style="padding-top: 0;">
+  <div class="section-label">Fale Comigo</div>
+  <div class="actions-grid">
+
+    <a href="https://wa.me/5511973972210" target="_blank" class="action-link wa reveal">
+      <div class="action-icon">
+        <svg viewBox="0 0 24 24" stroke="#16a34a"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </div>
+      <div class="action-text">
+        <div class="action-title">WhatsApp</div>
+        <div class="action-sub">Resposta rápida — fale agora</div>
+      </div>
+      <div class="action-arrow">→</div>
+    </a>
+
+    <a href="https://instagram.com/lopskaren" target="_blank" class="action-link ig reveal reveal-delay-1">
+      <div class="action-icon">
+        <svg viewBox="0 0 24 24" stroke="#c4785a"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </div>
+      <div class="action-text">
+        <div class="action-title">Instagram</div>
+        <div class="action-sub">@lopskaren — dicas e novidades</div>
+      </div>
+      <div class="action-arrow">→</div>
+    </a>
+
+    <a href="https://maps.google.com" target="_blank" class="action-link maps reveal reveal-delay-2">
+      <div class="action-icon">
+        <svg viewBox="0 0 24 24" stroke="#4f46e5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="action-text">
+        <div class="action-title">Como Chegar</div>
+        <div class="action-sub">Ver no Google Maps</div>
+      </div>
+      <div class="action-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Karen <em>Lopes</em></div>
+  <div class="footer-tag">Especialista em (D)epilação Íntima · São Paulo</div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.me/5511973972210" target="_blank" class="sticky-cta secondary">WhatsApp</a>
+  <a href="https://bio.site/karelops" target="_blank" class="sticky-cta primary">Agendar Agora</a>
+</div>
+
+<script>
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// Sticky bar on scroll
+const stickyBar = document.getElementById('stickyBar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 280) stickyBar.classList.add('visible');
+  else stickyBar.classList.remove('visible');
+}, { passive: true });
+
+// Hero entrance animation
+const heroContent = document.getElementById('heroContent');
+const heroChildren = Array.from(heroContent.children);
+heroChildren.forEach((el, i) => {
+  el.style.cssText = `opacity:0; transform:translateY(18px); transition: opacity 0.65s ease ${i * 0.09}s, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${i * 0.09}s`;
+});
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  heroChildren.forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
+}));
+</script>
+</body>
+</html>
